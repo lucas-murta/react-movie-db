@@ -27,6 +27,11 @@ Este documento descreve como usar os tokens de design configurados no projeto.
 - `text-content-bright` - Texto brilhante (sempre branco)
 - `text-content-din` - Texto escuro (sempre preto)
 
+### Cores de Borda
+
+- `border-border-0` - Borda mais clara (usada em superfícies altas)
+- `border-border-1` - Borda média (usada em superfícies médias)
+
 ## 🌓 Temas
 
 ### Detecção Automática

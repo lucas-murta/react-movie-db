@@ -17,6 +17,8 @@
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
   --color-focus: rgb(194, 38, 251);
+  --color-border-0: rgb(148, 173, 211);
+  --color-border-1: rgb(180, 206, 247);
 }
 
 /* Design Tokens - Dark Theme */
@@ -36,6 +38,8 @@
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
   --color-focus: rgb(194, 38, 251);
+  --color-border-0: rgb(99, 114, 137);
+  --color-border-1: rgb(152, 161, 175);
 }
 
 /* Tailwind CSS Custom Theme Configuration */
@@ -63,4 +67,8 @@
 
   /* Focus Color */
   --color-focus: var(--color-focus);
+
+  /* Border Colors */
+  --color-border-0: var(--color-border-0);
+  --color-border-1: var(--color-border-1);
 }
