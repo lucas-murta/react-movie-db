@@ -9,8 +9,18 @@ const Button = ({
   type = 'button',
 }: ButtonProps) => {
   const getVariantClasses = () => {
-    const baseClasses =
-      'h-8 px-4 rounded-lg transition-colors duration-200 font-medium';
+    const baseClasses = [
+      'h-10',
+      'px-4',
+      'rounded-lg',
+      'transition-colors',
+      'duration-200',
+      'font-medium',
+      'focus:outline-none',
+      'focus:ring-2',
+      'focus:ring-focus',
+      'focus:border-transparent',
+    ];
 
     const variantClasses = {
       solid: {
@@ -43,7 +53,7 @@ const Button = ({
 
     const disabledClasses = 'opacity-50 cursor-not-allowed hover:opacity-50';
 
-    return `${baseClasses} ${variantClasses[variant][color]} ${disabled ? disabledClasses : ''}`;
+    return `${baseClasses.join(' ')} ${variantClasses[variant][color]} ${disabled ? disabledClasses : ''}`;
   };
 
   return (

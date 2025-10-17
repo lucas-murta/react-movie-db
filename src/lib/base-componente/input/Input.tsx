@@ -20,7 +20,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const baseClasses = [
-      'h-8',
+      'h-10',
       'px-4',
       'border',
       'border-border-0',
