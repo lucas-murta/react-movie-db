@@ -5,7 +5,7 @@ function App() {
   useTheme();
 
   return (
-    <div className="min-h-screen bg-surface-0 text-content-default">
+    <div className="min-h-screen bg-surface-2 text-content-default">
       <AppRouter />
     </div>
   );

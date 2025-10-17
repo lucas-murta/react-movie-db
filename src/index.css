@@ -16,6 +16,7 @@
   --color-content-primary: rgb(255, 255, 255);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
+  --color-focus: rgb(194, 38, 251);
 }
 
 /* Design Tokens - Dark Theme */
@@ -34,6 +35,7 @@
   --color-content-primary: rgb(40, 40, 40);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
+  --color-focus: rgb(194, 38, 251);
 }
 
 /* Tailwind CSS Custom Theme Configuration */
@@ -58,4 +60,7 @@
   --color-surface-positive: var(--color-surface-positive);
   --color-surface-warning: var(--color-surface-warning);
   --color-surface-negative: var(--color-surface-negative);
+
+  /* Focus Color */
+  --color-focus: var(--color-focus);
 }
