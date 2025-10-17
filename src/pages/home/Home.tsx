@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Button, Input } from '../../lib/base-componente';
+import { Button, Input, Select } from '../../lib/base-componente';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
+  const [selectedGenre, setSelectedGenre] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -13,6 +14,11 @@ const Home = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     setSearchValue(target.value);
+  };
+
+  const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const target = event.target as HTMLSelectElement;
+    setSelectedGenre(target.value);
   };
 
   return (
@@ -65,6 +71,53 @@ const Home = () => {
                 Input Desabilitado
               </label>
               <Input placeholder="Este input está desabilitado" disabled />
+            </div>
+          </div>
+        </div>
+
+        {/* Select Component Demo */}
+        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2 mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-content-default">
+            Demonstração do Componente Select
+          </h2>
+          <div className="space-y-4 max-w-md mx-auto">
+            <div>
+              <label className="block text-sm font-medium text-content-default mb-2">
+                Selecionar Gênero
+              </label>
+              <Select
+                placeholder="Escolha um gênero..."
+                value={selectedGenre}
+                onChange={handleGenreChange}
+                options={[
+                  { value: 'action', label: 'Ação' },
+                  { value: 'comedy', label: 'Comédia' },
+                  { value: 'drama', label: 'Drama' },
+                  { value: 'horror', label: 'Terror' },
+                  { value: 'romance', label: 'Romance' },
+                  { value: 'scifi', label: 'Ficção Científica' },
+                  { value: 'thriller', label: 'Thriller', disabled: true },
+                ]}
+              />
+              {selectedGenre && (
+                <p className="text-sm text-content-ghost mt-2">
+                  Gênero selecionado: {selectedGenre}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-content-default mb-2">
+                Select Desabilitado
+              </label>
+              <Select
+                placeholder="Este select está desabilitado"
+                disabled
+                options={[
+                  { value: 'option1', label: 'Opção 1' },
+                  { value: 'option2', label: 'Opção 2' },
+                ]}
+              />
             </div>
           </div>
         </div>
