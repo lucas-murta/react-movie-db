@@ -1,21 +1,18 @@
 import { forwardRef } from 'react';
-import type { InputProps } from './Input.types';
+import type { SelectProps } from './Select.types';
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
       value,
       name,
-      disabled = false,
+      disabled,
       placeholder,
-      onInput,
+      options,
       onChange,
       onFocus,
       onBlur,
-      onKeyDown,
-      onKeyUp,
       onClick,
-      ...props
     },
     ref
   ) => {
@@ -34,6 +31,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'focus:ring-focus',
       'focus:border-transparent',
       'w-full',
+      'appearance-none',
+      'cursor-pointer',
     ];
 
     const disabledClasses = disabled
@@ -43,27 +42,34 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const classes = [...baseClasses, ...disabledClasses].join(' ');
 
     return (
-      <input
+      <select
         ref={ref}
-        type="text"
         value={value}
         name={name}
         disabled={disabled}
-        placeholder={placeholder}
-        className={classes}
-        onInput={onInput}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        onKeyDown={onKeyDown}
-        onKeyUp={onKeyUp}
         onClick={onClick}
-        {...props}
-      />
+        className={classes}
+      >
+        {placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
+        {options.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+          >
+            {option.label}
+          </option>
+        ))}
+      </select>
     );
   }
 );
 
-Input.displayName = 'Input';
-
-export default Input;
+Select.displayName = 'Select';
