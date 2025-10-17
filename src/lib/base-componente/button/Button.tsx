@@ -10,7 +10,7 @@ const Button = ({
 }: ButtonProps) => {
   const getVariantClasses = () => {
     const baseClasses =
-      'h-12 px-2 rounded transition-colors duration-200 font-medium';
+      'h-8 px-4 rounded-lg transition-colors duration-200 font-medium';
 
     const variantClasses = {
       solid: {
@@ -31,13 +31,13 @@ const Button = ({
       },
       text: {
         primary:
-          'text-primary bg-transparent hover:bg-primary hover:bg-opacity-10',
+          'text-primary bg-transparent hover:bg-surface-0/16 hover:bg-opacity-10',
         secondary:
-          'text-secondary bg-transparent hover:bg-secondary hover:bg-opacity-10',
+          'text-secondary bg-transparent hover:bg-surface-0/16 hover:bg-opacity-10',
         positive:
-          'text-surface-positive bg-transparent hover:bg-surface-positive hover:bg-opacity-10',
+          'text-surface-positive bg-transparent hover:bg-surface-0/16 hover:bg-opacity-10',
         negative:
-          'text-surface-negative bg-transparent hover:bg-surface-negative hover:bg-opacity-10',
+          'text-surface-negative bg-transparent hover:bg-surface-0/16 hover:bg-opacity-10',
       },
     };
 
