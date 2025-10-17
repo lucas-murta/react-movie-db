@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Input from '../../lib/base-componente/input';
-import { Button } from '../../lib/base-componente';
+import { Button, Input } from '../../lib/base-componente';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
@@ -8,13 +7,11 @@ const Home = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    console.log(target.value);
     setInputValue(target.value);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    console.log(target.value);
     setSearchValue(target.value);
   };
 
