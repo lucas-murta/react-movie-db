@@ -20,7 +20,7 @@ const Home = () => {
             <p className="text-content-default mb-4">
               Demonstração da cor primária do sistema
             </p>
-            <button className="bg-primary text-content-bright px-4 py-2 rounded hover:opacity-90">
+            <button className="bg-primary text-content-primary px-4 py-2 rounded hover:opacity-90">
               Botão Primário
             </button>
           </div>
@@ -33,7 +33,7 @@ const Home = () => {
             <p className="text-content-default mb-4">
               Demonstração da cor secundária do sistema
             </p>
-            <button className="bg-secondary text-content-bright px-4 py-2 rounded hover:opacity-90">
+            <button className="bg-secondary text-content-primary px-4 py-2 rounded hover:opacity-90">
               Botão Secundário
             </button>
           </div>
@@ -45,16 +45,16 @@ const Home = () => {
             </h3>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-status-positive rounded"></div>
-                <span className="text-status-positive">Success</span>
+                <div className="w-4 h-4 bg-surface-positive rounded"></div>
+                <span className="text-content-default">Success</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-status-warning rounded"></div>
-                <span className="text-status-warning">Warning</span>
+                <div className="w-4 h-4 bg-surface-warning rounded"></div>
+                <span className="text-content-default">Warning</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-status-negative rounded"></div>
-                <span className="text-status-negative">Error</span>
+                <div className="w-4 h-4 bg-surface-negative rounded"></div>
+                <span className="text-content-default">Error</span>
               </div>
             </div>
           </div>

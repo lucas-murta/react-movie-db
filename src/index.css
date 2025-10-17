@@ -5,33 +5,35 @@
   --color-primary: rgb(59, 130, 246);
   --color-secondary: rgb(142, 122, 183);
   --color-surface-0: rgb(255, 255, 255);
-  --color-surface-1: rgb(246, 246, 246);
-  --color-surface-2: rgb(237, 237, 237);
+  --color-surface-1: rgb(222, 228, 236);
+  --color-surface-2: rgb(181, 191, 207);
+  --color-surface-positive: rgb(0, 122, 66);
+  --color-surface-warning: rgb(245, 158, 11);
+  --color-surface-negative: rgb(168, 11, 11);
   --color-content-default: rgb(40, 40, 40);
   --color-content-disable: rgb(89, 89, 89);
   --color-content-ghost: rgb(140, 140, 140);
+  --color-content-primary: rgb(255, 255, 255);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
-  --color-status-positive: rgb(0, 122, 66);
-  --color-status-warning: rgb(245, 158, 11);
-  --color-status-negative: rgb(168, 11, 11);
 }
 
 /* Design Tokens - Dark Theme */
 :root.dark {
-  --color-primary: rgb(59, 130, 246);
-  --color-secondary: rgb(142, 122, 183);
+  --color-primary: rgb(138, 183, 255);
+  --color-secondary: rgb(194, 176, 231);
   --color-surface-0: rgb(96, 112, 135);
   --color-surface-1: rgb(51, 65, 85);
   --color-surface-2: rgb(30, 41, 59);
+  --color-surface-positive: rgb(91, 221, 160);
+  --color-surface-warning: rgb(240, 197, 124);
+  --color-surface-negative: rgb(219, 134, 134);
   --color-content-default: rgb(255, 255, 255);
   --color-content-disable: rgb(226, 226, 226);
   --color-content-ghost: rgb(184, 184, 184);
+  --color-content-primary: rgb(40, 40, 40);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
-  --color-status-positive: rgb(0, 122, 66);
-  --color-status-warning: rgb(245, 158, 11);
-  --color-status-negative: rgb(168, 11, 11);
 }
 
 /* Tailwind CSS Custom Theme Configuration */
@@ -48,11 +50,12 @@
   --color-content-default: var(--color-content-default);
   --color-content-disable: var(--color-content-disable);
   --color-content-ghost: var(--color-content-ghost);
+  --color-content-primary: var(--color-content-primary);
   --color-content-bright: var(--color-content-bright);
   --color-content-din: var(--color-content-din);
 
-  /* Status Colors */
-  --color-status-positive: var(--color-status-positive);
-  --color-status-warning: var(--color-status-warning);
-  --color-status-negative: var(--color-status-negative);
+  /* Surface Status Colors */
+  --color-surface-positive: var(--color-surface-positive);
+  --color-surface-warning: var(--color-surface-warning);
+  --color-surface-negative: var(--color-surface-negative);
 }

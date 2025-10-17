@@ -14,64 +14,42 @@ Este documento descreve como usar os tokens de design configurados no projeto.
 - `bg-surface-0` - Superfície mais alta (destaques)
 - `bg-surface-1` - Superfície media (cards, modais)
 - `bg-surface-2` - Superfície baixa (fundo da aplicação)
+- `bg-surface-positive` - Superfície de sucesso (verde)
+- `bg-surface-warning` - Superfície de aviso (amarelo)
+- `bg-surface-negative` - Superfície de erro (vermelho)
 
 ### Cores de Conteúdo
 
 - `text-content-default` - Texto padrão
 - `text-content-disable` - Texto desabilitado
 - `text-content-ghost` - Texto secundário/fantasma
+- `text-content-primary` - Texto para fundos coloridos (primary, secondary, status)
 - `text-content-bright` - Texto brilhante (sempre branco)
 - `text-content-din` - Texto escuro (sempre preto)
 
-### Cores de Status
-
-- `bg-status-positive` / `text-status-positive` - Sucesso (verde)
-- `bg-status-warning` / `text-status-warning` - Aviso (amarelo)
-- `bg-status-negative` / `text-status-negative` - Erro (vermelho)
-
 ## 🌓 Temas
 
-### Light Theme (Padrão)
+### Detecção Automática
 
-O tema claro é aplicado por padrão quando a aplicação carrega.
+A aplicação detecta automaticamente as preferências de tema do sistema operacional e aplica o tema correspondente:
 
-### Dark Theme
+- **Light Theme**: Aplicado quando o sistema está configurado para modo claro
+- **Dark Theme**: Aplicado quando o sistema está configurado para modo escuro
 
-Para ativar o tema escuro, adicione a classe `dark` ao elemento `html`:
+### Mudanças Dinâmicas
+
+O tema muda automaticamente quando o usuário altera as configurações do sistema, sem necessidade de recarregar a página.
+
+### Controle Manual (Opcional)
+
+Se necessário, você ainda pode controlar o tema manualmente:
 
 ```javascript
+// Forçar tema escuro
 document.documentElement.classList.add('dark');
-```
 
-Para remover o tema escuro:
-
-```javascript
+// Forçar tema claro
 document.documentElement.classList.remove('dark');
-```
-
-## 📝 Exemplos de Uso
-
-### Botões
-
-```jsx
-// Botão primário
-<button className="bg-primary text-content-bright px-4 py-2 rounded">
-  Botão Primário
-</button>
-
-// Botão secundário
-<button className="bg-secondary text-content-bright px-4 py-2 rounded">
-  Botão Secundário
-</button>
-```
-
-### Cards
-
-```jsx
-<div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2">
-  <h3 className="text-content-default">Título do Card</h3>
-  <p className="text-content-ghost">Descrição do card</p>
-</div>
 ```
 
 ## 🔧 Configuração Técnica
@@ -80,9 +58,10 @@ Os tokens são definidos no arquivo `src/index.css` usando CSS Custom Properties
 
 ### Estrutura:
 
-1. **CSS Variables**: Definidas em `:root` (light) e `:root.dark` (dark)
+1. **CSS Variables**: Definidas em `:root` (light theme) e `:root.dark` (dark theme)
 2. **@theme**: Mapeia as variáveis CSS para classes do Tailwind
-3. **Automatic Switching**: O tema muda automaticamente baseado na classe `dark` no elemento `html`
+3. **Automatic Detection**: O tema é detectado automaticamente baseado nas preferências do sistema usando `window.matchMedia('(prefers-color-scheme: dark)')`
+4. **Dynamic Switching**: Responde em tempo real às mudanças de tema do sistema operacional
 
 ## 🎯 Benefícios
 
