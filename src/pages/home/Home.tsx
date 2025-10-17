@@ -1,29 +1,6 @@
-import { useState } from 'react';
-
 const Home = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    if (!isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
-
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Theme Toggle Button */}
-      <div className="flex justify-end mb-6">
-        <button
-          onClick={toggleTheme}
-          className="bg-primary text-content-bright px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
-        >
-          {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-        </button>
-      </div>
-
       <h1 className="text-4xl font-bold text-center mb-8 text-content-default">
         Explore Filmes
       </h1>
