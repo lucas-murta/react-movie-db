@@ -1,11 +1,11 @@
-import AppRouter from './router'
+import AppRouter from './router';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-surface-0 text-content-default">
       <AppRouter />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

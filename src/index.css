@@ -1,1 +1,58 @@
 @import 'tailwindcss';
+
+/* Design Tokens - Light Theme (Default) */
+:root {
+  --color-primary: rgb(59, 130, 246);
+  --color-secondary: rgb(142, 122, 183);
+  --color-surface-0: rgb(255, 255, 255);
+  --color-surface-1: rgb(246, 246, 246);
+  --color-surface-2: rgb(237, 237, 237);
+  --color-content-default: rgb(40, 40, 40);
+  --color-content-disable: rgb(89, 89, 89);
+  --color-content-ghost: rgb(140, 140, 140);
+  --color-content-bright: rgb(255, 255, 255);
+  --color-content-din: rgb(0, 0, 0);
+  --color-status-positive: rgb(0, 122, 66);
+  --color-status-warning: rgb(245, 158, 11);
+  --color-status-negative: rgb(168, 11, 11);
+}
+
+/* Design Tokens - Dark Theme */
+:root.dark {
+  --color-primary: rgb(59, 130, 246);
+  --color-secondary: rgb(142, 122, 183);
+  --color-surface-0: rgb(96, 112, 135);
+  --color-surface-1: rgb(51, 65, 85);
+  --color-surface-2: rgb(30, 41, 59);
+  --color-content-default: rgb(255, 255, 255);
+  --color-content-disable: rgb(226, 226, 226);
+  --color-content-ghost: rgb(184, 184, 184);
+  --color-content-bright: rgb(255, 255, 255);
+  --color-content-din: rgb(0, 0, 0);
+  --color-status-positive: rgb(0, 122, 66);
+  --color-status-warning: rgb(245, 158, 11);
+  --color-status-negative: rgb(168, 11, 11);
+}
+
+/* Tailwind CSS Custom Theme Configuration */
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+
+  /* Surface Colors */
+  --color-surface-0: var(--color-surface-0);
+  --color-surface-1: var(--color-surface-1);
+  --color-surface-2: var(--color-surface-2);
+
+  /* Content Colors */
+  --color-content-default: var(--color-content-default);
+  --color-content-disable: var(--color-content-disable);
+  --color-content-ghost: var(--color-content-ghost);
+  --color-content-bright: var(--color-content-bright);
+  --color-content-din: var(--color-content-din);
+
+  /* Status Colors */
+  --color-status-positive: var(--color-status-positive);
+  --color-status-warning: var(--color-status-warning);
+  --color-status-negative: var(--color-status-negative);
+}
