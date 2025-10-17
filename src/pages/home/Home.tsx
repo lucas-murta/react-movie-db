@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Input, Select } from '../../lib/base-componente';
+import { Button, Input, Select, Chips } from '../../lib/base-componente';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
@@ -118,6 +118,39 @@ const Home = () => {
                   { value: 'option2', label: 'Opção 2' },
                 ]}
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Chips Component Demo */}
+        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2 mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-content-default">
+            Demonstração do Componente Chips
+          </h2>
+          <div className="space-y-6 max-w-2xl mx-auto">
+            <div>
+              <label className="block text-sm font-medium text-content-default mb-3">
+                Chips por Cores
+              </label>
+              <div className="flex flex-wrap gap-2">
+                <Chips color="primary">Primary</Chips>
+                <Chips color="warning">Warning</Chips>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-content-default mb-3">
+                Gêneros de Filmes
+              </label>
+              <div className="flex flex-wrap gap-2">
+                <Chips color="primary">Ação</Chips>
+                <Chips color="primary">Comédia</Chips>
+                <Chips color="primary">Drama</Chips>
+                <Chips color="warning">Terror</Chips>
+                <Chips color="primary">Romance</Chips>
+                <Chips color="primary">Ficção Científica</Chips>
+                <Chips color="warning">Thriller</Chips>
+              </div>
             </div>
           </div>
         </div>
