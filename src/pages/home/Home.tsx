@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Input, Select, Chips } from '../../lib/base-componente';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
@@ -23,9 +24,15 @@ const Home = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8 text-content-default">
-        Explore Filmes
-      </h1>
+      <div className="text-center mb-8">
+        <FontAwesomeIcon
+          icon="clapperboard"
+          className="text-6xl text-secondary mb-4"
+        />
+        <h1 className="text-4xl font-bold text-content-default">
+          Explore Filmes
+        </h1>
+      </div>
 
       <div className="text-center">
         <p className="text-lg text-content-ghost mb-8">
