@@ -1,1 +1,2 @@
-export { Header } from '../component/header';
+export * from './header';
+export * from './movie-card';

@@ -1,26 +1,89 @@
-import { useState } from 'react';
-import { Button, Input, Select, Chips } from '../../lib/base-component';
+import { useState, useEffect } from 'react';
+import { MovieCard } from '../../lib/component';
+import type { Movie } from '../../services/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [searchValue, setSearchValue] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('');
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-    setInputValue(target.value);
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-    setSearchValue(target.value);
-  };
-
-  const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const target = event.target as HTMLSelectElement;
-    setSelectedGenre(target.value);
-  };
+  // Mock data para demonstração
+  useEffect(() => {
+    const mockMovies: Movie[] = [
+      {
+        id: 1,
+        title: 'Avatar: O Caminho da Água',
+        overview:
+          'Ambientado mais de uma década após os eventos do primeiro filme, Avatar: O Caminho da Água conta a história da família Sully, os problemas que os perseguem, até onde vão para se manter seguros, as batalhas que lutam para se manter vivos e as tragédias que suportam.',
+        poster_path: '/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg',
+        backdrop_path: '/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg',
+        release_date: '2022-12-14',
+        vote_average: 7.6,
+        vote_count: 9284,
+        genre_ids: [878, 12, 28],
+      },
+      {
+        id: 2,
+        title: 'Top Gun: Maverick',
+        overview:
+          'Depois de mais de 30 anos de serviço como um dos principais aviadores da Marinha, Pete "Maverick" Mitchell está onde pertence, empurrando o envelope como um piloto de teste corajoso e esquivando-se do avanço na classificação que o aterraria.',
+        poster_path: '/62HCnUTziyWcpDaBO2i1DX17ljH.jpg',
+        backdrop_path: '/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg',
+        release_date: '2022-05-24',
+        vote_average: 8.3,
+        vote_count: 7892,
+        genre_ids: [28, 18],
+      },
+      {
+        id: 3,
+        title: 'Pantera Negra: Wakanda Para Sempre',
+        overview:
+          "A rainha Ramonda, Shuri, M'Baku, Okoye e as Dora Milaje lutam para proteger sua nação das potências mundiais intervenientes após a morte do rei T'Challa. Quando Namor, rei de uma nação subaquática oculta, ameaça Wakanda, eles devem forjar um novo caminho para o reino.",
+        poster_path: '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg',
+        backdrop_path: '/yYrvN5WFeGYjJnRzhY0QXuo4Isw.jpg',
+        release_date: '2022-11-09',
+        vote_average: 7.1,
+        vote_count: 5234,
+        genre_ids: [28, 12, 18],
+      },
+      {
+        id: 4,
+        title: 'Homem-Aranha: Sem Volta Para Casa',
+        overview:
+          'Peter Parker é desmascarado e não consegue mais separar sua vida normal dos grandes riscos de ser um super-herói. Quando ele pede ajuda ao Doutor Estranho, os riscos se tornam ainda mais perigosos, forçando-o a descobrir o que realmente significa ser o Homem-Aranha.',
+        poster_path: '/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',
+        backdrop_path: '/14QbnygCuTO0vl7CAFmPf1fgZfV.jpg',
+        release_date: '2021-12-15',
+        vote_average: 8.1,
+        vote_count: 18567,
+        genre_ids: [28, 12, 878],
+      },
+      {
+        id: 5,
+        title: 'Doutor Estranho no Multiverso da Loucura',
+        overview:
+          'O Doutor Stephen Strange continua sua pesquisa sobre a Joia do Tempo. Mas um velho amigo que virou inimigo põe fim aos seus planos e faz com que Strange desencadeie um mal indescritível.',
+        poster_path: '/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg',
+        backdrop_path: '/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg',
+        release_date: '2022-05-04',
+        vote_average: 7.3,
+        vote_count: 8945,
+        genre_ids: [14, 28, 12],
+      },
+      {
+        id: 6,
+        title: 'Thor: Amor e Trovão',
+        overview:
+          'Thor embarca em uma jornada diferente de tudo que já enfrentou – uma busca pela paz interior. Mas sua aposentadoria é interrompida por um assassino galáctico conhecido como Gorr, o Carniceiro dos Deuses.',
+        poster_path: '/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg',
+        backdrop_path: '/p1F51Lvj3sMopG948F5HsBbl43C.jpg',
+        release_date: '2022-07-06',
+        vote_average: 6.4,
+        vote_count: 7123,
+        genre_ids: [28, 12, 14],
+      },
+    ];
+    setMovies(mockMovies);
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -30,187 +93,28 @@ const Home = () => {
           className="text-6xl text-secondary mb-4"
         />
         <h1 className="text-4xl font-bold text-content-default">
-          Explore Filmes
+          Filmes Populares
         </h1>
+        <p className="text-lg text-content-ghost mt-4">
+          Descubra os melhores filmes em cartaz
+        </p>
       </div>
 
-      <div className="text-center">
-        <p className="text-lg text-content-ghost mb-8">
-          Descubra os melhores filmes e crie suas listas personalizadas
-        </p>
-
-        {/* Input Component Demo */}
-        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-content-default">
-            Demonstração do Componente Input
-          </h2>
-          <div className="space-y-4 max-w-md mx-auto">
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-2">
-                Input Básico
-              </label>
-              <Input
-                placeholder="Digite algo aqui..."
-                value={inputValue}
-                onChange={(event) => handleInputChange(event)}
-              />
-              {inputValue && (
-                <p className="text-sm text-content-ghost mt-2">
-                  Valor: {inputValue}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-2">
-                Buscar Filmes
-              </label>
-              <Input
-                placeholder="Buscar filmes..."
-                value={searchValue}
-                onChange={(event) => handleSearchChange(event)}
-                name="search"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-2">
-                Input Desabilitado
-              </label>
-              <Input placeholder="Este input está desabilitado" disabled />
-            </div>
-          </div>
-        </div>
-
-        {/* Select Component Demo */}
-        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-content-default">
-            Demonstração do Componente Select
-          </h2>
-          <div className="space-y-4 max-w-md mx-auto">
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-2">
-                Selecionar Gênero
-              </label>
-              <Select
-                placeholder="Escolha um gênero..."
-                value={selectedGenre}
-                onChange={handleGenreChange}
-                options={[
-                  { value: 'action', label: 'Ação' },
-                  { value: 'comedy', label: 'Comédia' },
-                  { value: 'drama', label: 'Drama' },
-                  { value: 'horror', label: 'Terror' },
-                  { value: 'romance', label: 'Romance' },
-                  { value: 'scifi', label: 'Ficção Científica' },
-                  { value: 'thriller', label: 'Thriller', disabled: true },
-                ]}
-              />
-              {selectedGenre && (
-                <p className="text-sm text-content-ghost mt-2">
-                  Gênero selecionado: {selectedGenre}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-2">
-                Select Desabilitado
-              </label>
-              <Select
-                placeholder="Este select está desabilitado"
-                disabled
-                options={[
-                  { value: 'option1', label: 'Opção 1' },
-                  { value: 'option2', label: 'Opção 2' },
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Chips Component Demo */}
-        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-content-default">
-            Demonstração do Componente Chips
-          </h2>
-          <div className="space-y-6 max-w-2xl mx-auto">
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-3">
-                Chips por Cores
-              </label>
-              <div className="flex flex-wrap gap-2">
-                <Chips color="primary">Primary</Chips>
-                <Chips color="warning">Warning</Chips>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-content-default mb-3">
-                Gêneros de Filmes
-              </label>
-              <div className="flex flex-wrap gap-2">
-                <Chips color="primary">Ação</Chips>
-                <Chips color="primary">Comédia</Chips>
-                <Chips color="primary">Drama</Chips>
-                <Chips color="warning">Terror</Chips>
-                <Chips color="primary">Romance</Chips>
-                <Chips color="primary">Ficção Científica</Chips>
-                <Chips color="warning">Thriller</Chips>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Design Tokens Demo Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {/* Primary Card */}
-          <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2">
-            <h3 className="text-xl font-semibold mb-3 text-primary">
-              Primary Color
-            </h3>
-            <p className="text-content-default mb-4">
-              Demonstração da cor primária do sistema
-            </p>
-            <Button>Botão Primário</Button>
-          </div>
-
-          {/* Secondary Card */}
-          <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2">
-            <h3 className="text-xl font-semibold mb-3 text-secondary">
-              Secondary Color
-            </h3>
-            <p className="text-content-default mb-4">
-              Demonstração da cor secundária do sistema
-            </p>
-            <Button color="secondary">Botão Secundário</Button>
-          </div>
-
-          {/* Status Colors Card */}
-          <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2">
-            <h3 className="text-xl font-semibold mb-3 text-content-default">
-              Status Colors
-            </h3>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Button color="positive">Botão positive</Button>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button color="negative">Botão negative</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-surface-1 rounded-lg shadow-md p-6 border border-surface-2">
-          <h2 className="text-2xl font-semibold mb-4 text-content-default">
-            Em breve...
-          </h2>
-          <p className="text-content-ghost">
-            Integração com a API do The Movie Database (TMDB) será implementada
-            aqui
-          </p>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {movies.map((movie, index) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            variant={index % 2 === 0 ? 'add' : 'remove'}
+            onButtonClick={(movie, variant) => {
+              console.log(
+                `${variant === 'add' ? 'Adicionando' : 'Removendo'} filme:`,
+                movie.title,
+                `- Variant: ${variant}`
+              );
+            }}
+          />
+        ))}
       </div>
     </div>
   );
