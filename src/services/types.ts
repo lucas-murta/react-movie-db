@@ -40,8 +40,4 @@ export interface DiscoverMoviesParams {
   sort_by?: string;
   with_genres?: string;
   year?: number;
-  vote_average_gte?: number;
-  vote_average_lte?: number;
-  vote_count_gte?: number;
-  vote_count_lte?: number;
 }
