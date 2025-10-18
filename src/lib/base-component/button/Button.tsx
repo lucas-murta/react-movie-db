@@ -7,6 +7,7 @@ const Button = ({
   children,
   disabled = false,
   type = 'button',
+  ...rest
 }: ButtonProps) => {
   const getVariantClasses = () => {
     const baseClasses = [
@@ -62,6 +63,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={getVariantClasses()}
+      {...rest}
     >
       {children}
     </button>

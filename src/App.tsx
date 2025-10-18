@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from 'react-router-dom';
 import AppRouter from './router';
 import { useTheme } from './hooks/useTheme';
 
@@ -6,7 +7,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-surface-2 text-content-default">
-      <AppRouter />
+      <Router>
+        <AppRouter />
+      </Router>
     </div>
   );
 }

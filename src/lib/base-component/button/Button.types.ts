@@ -2,7 +2,8 @@ export type ButtonVariant = 'solid' | 'outline' | 'text';
 
 export type ButtonColor = 'primary' | 'secondary' | 'positive' | 'negative';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   color?: ButtonColor;
   onClick?: () => void;
