@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import './lib/base-componente/icon/fontawesome';
+import './lib/base-component/icon/fontawesome';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Input, Select, Chips } from '../../lib/base-componente';
+import { Button, Input, Select, Chips } from '../../lib/base-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
