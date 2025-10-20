@@ -135,6 +135,16 @@ const MovieDetails = () => {
                   {movie.title}
                 </h1>
 
+                {movie.genres && movie.genres.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {movie.genres.map((genre) => (
+                      <Chips key={genre.id} color="primary">
+                        {genre.name}
+                      </Chips>
+                    ))}
+                  </div>
+                )}
+
                 <div className="mb-4">
                   <span className="text-content-disable">
                     Data de lançamento: {formatDate(movie.release_date)}
