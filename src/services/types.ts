@@ -8,6 +8,7 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
+  genres?: Genre[]; // Available in movie details endpoint
 }
 
 export interface Genre {
