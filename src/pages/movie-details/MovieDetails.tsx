@@ -5,13 +5,17 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { moviesService } from '../../services';
 import type { Movie } from '../../services/types';
 import { Button, Chips } from '../../lib/base-component';
+import { useFavorites } from '../../contexts/FavoritesContext';
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const isMovieFavorite = isFavorite(Number(id));
 
   useEffect(() => {
     const loadMovieDetails = async () => {
@@ -158,7 +162,7 @@ const MovieDetails = () => {
                   </Chips>
                 </div>
 
-                <div>
+                <div className="mb-4">
                   <h3 className="text-xl font-bold text-content-default mb-2">
                     Sinópse
                   </h3>
@@ -166,6 +170,21 @@ const MovieDetails = () => {
                     {movie.overview || 'Sinopse não disponível.'}
                   </p>
                 </div>
+                {!isMovieFavorite ? (
+                  <Button
+                    onClick={() => addToFavorites(movie)}
+                    color="positive"
+                  >
+                    Adicionar aos Favoritos
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => removeFromFavorites(Number(id))}
+                    color="negative"
+                  >
+                    Remover dos Favoritos
+                  </Button>
+                )}
               </div>
             </div>
           </div>

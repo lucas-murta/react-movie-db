@@ -1,4 +1,5 @@
 import { useFavorites } from '../../hooks/useFavorites';
+import { Button } from '../../lib/base-component';
 import { MovieCard } from '../../lib/component';
 
 const Favorites = () => {
@@ -12,12 +13,9 @@ const Favorites = () => {
             Favoritos ({favoritesCount})
           </h1>
           {favoritesCount > 0 && (
-            <button
-              onClick={clearFavorites}
-              className="px-4 py-2 bg-surface-negative text-content-default rounded-lg hover:bg-surface-negative/80 transition-colors"
-            >
+            <Button onClick={clearFavorites} color="negative">
               Limpar Favoritos
-            </button>
+            </Button>
           )}
         </div>
 
