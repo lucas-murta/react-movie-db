@@ -15,6 +15,7 @@ const Button = ({
       'h-10',
       iconButton ? 'w-10' : 'px-4',
       'rounded-lg',
+      'cursor-pointer',
       'transition-colors',
       'duration-200',
       'font-medium',
