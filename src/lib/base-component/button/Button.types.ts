@@ -10,4 +10,5 @@ export interface ButtonProps
   children: React.ReactNode;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  iconButton?: boolean;
 }
