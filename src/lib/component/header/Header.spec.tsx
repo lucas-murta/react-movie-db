@@ -7,11 +7,11 @@ describe('Header', () => {
     const mockOnSearch = vi.fn();
     render(<Header onSearch={mockOnSearch} />);
 
-    const searchInput = screen.getByTestId('search-input');
-    const searchForm = screen.getByTestId('search-form');
+    const searchInputs = screen.getAllByTestId('search-input');
+    const searchForms = screen.getAllByTestId('search-form');
 
-    fireEvent.change(searchInput, { target: { value: 'batman' } });
-    fireEvent.submit(searchForm);
+    fireEvent.change(searchInputs[0], { target: { value: 'batman' } }); // Usa o primeiro input (desktop)
+    fireEvent.submit(searchForms[0]); // Usa o primeiro form (desktop)
 
     expect(mockOnSearch).toHaveBeenCalledWith({ query: 'batman' });
   });
@@ -20,8 +20,8 @@ describe('Header', () => {
     const mockOnNavigate = vi.fn();
     render(<Header onNavigate={mockOnNavigate} />);
 
-    const homeButton = screen.getByTestId('nav-home');
-    fireEvent.click(homeButton);
+    const homeButtons = screen.getAllByTestId('nav-home');
+    fireEvent.click(homeButtons[0]); // Clica no primeiro botão (desktop)
 
     expect(mockOnNavigate).toHaveBeenCalledWith({ page: 'home' });
   });
@@ -30,8 +30,8 @@ describe('Header', () => {
     const mockOnNavigate = vi.fn();
     render(<Header onNavigate={mockOnNavigate} />);
 
-    const favoritesButton = screen.getByTestId('nav-favorites');
-    fireEvent.click(favoritesButton);
+    const favoritesButtons = screen.getAllByTestId('nav-favorites');
+    fireEvent.click(favoritesButtons[0]); // Clica no primeiro botão (desktop)
 
     expect(mockOnNavigate).toHaveBeenCalledWith({ page: 'favorites' });
   });
