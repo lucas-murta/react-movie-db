@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 import { moviesService } from '../../services';
+import { FavoritesProvider } from '../../contexts/FavoritesContext';
 
 // Mock do moviesService
 vi.mock('../../services', () => ({
@@ -34,9 +35,11 @@ const mockMoviesResponse = {
 
 const renderHome = () => {
   return render(
-    <BrowserRouter>
-      <Home />
-    </BrowserRouter>
+    <FavoritesProvider>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </FavoritesProvider>
   );
 };
 

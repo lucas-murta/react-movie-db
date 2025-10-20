@@ -1,8 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import MovieCard from './MovieCard';
 import type { Movie } from '../../../services/types';
+import { FavoritesProvider } from '../../../contexts/FavoritesContext';
 
 const mockMovie: Movie = {
   id: 1,
@@ -27,46 +28,55 @@ vi.mock('react-router-dom', async () => {
 });
 
 const renderWithRouter = (component: React.ReactElement) => {
-  return render(<BrowserRouter>{component}</BrowserRouter>);
+  return render(
+    <FavoritesProvider>
+      <BrowserRouter>{component}</BrowserRouter>
+    </FavoritesProvider>
+  );
 };
 
 describe('MovieCard', () => {
+  const FAVORITES_STORAGE_KEY = 'react-movie-db-favorites';
+
   beforeEach(() => {
     vi.clearAllMocks();
+    localStorage.clear();
   });
 
-  it('should call onButtonClick with movie and variant when add button is clicked', () => {
-    const mockOnButtonClick = vi.fn();
-
-    renderWithRouter(
-      <MovieCard
-        movie={mockMovie}
-        variant="add"
-        onButtonClick={mockOnButtonClick}
-      />
-    );
+  it('should add movie to favorites when heart button is clicked', async () => {
+    renderWithRouter(<MovieCard movie={mockMovie} />);
 
     const button = screen.getByTestId('movie-action-button');
     fireEvent.click(button);
 
-    expect(mockOnButtonClick).toHaveBeenCalledWith(mockMovie, 'add');
+    await waitFor(() => {
+      const favorites = JSON.parse(
+        localStorage.getItem(FAVORITES_STORAGE_KEY) || '[]'
+      );
+      expect(favorites).toHaveLength(1);
+      expect(favorites[0]).toEqual(mockMovie);
+    });
   });
 
-  it('should call onButtonClick with movie and variant when remove button is clicked', () => {
-    const mockOnButtonClick = vi.fn();
+  it('should remove movie from favorites when trash button is clicked', async () => {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([mockMovie]));
 
-    renderWithRouter(
-      <MovieCard
-        movie={mockMovie}
-        variant="remove"
-        onButtonClick={mockOnButtonClick}
-      />
-    );
+    renderWithRouter(<MovieCard movie={mockMovie} />);
+
+    await waitFor(() => {
+      const button = screen.getByTestId('movie-action-button');
+      expect(button).toHaveAttribute('aria-label', 'Remover dos favoritos');
+    });
 
     const button = screen.getByTestId('movie-action-button');
     fireEvent.click(button);
 
-    expect(mockOnButtonClick).toHaveBeenCalledWith(mockMovie, 'remove');
+    await waitFor(() => {
+      const favorites = JSON.parse(
+        localStorage.getItem(FAVORITES_STORAGE_KEY) || '[]'
+      );
+      expect(favorites).toHaveLength(0);
+    });
   });
 
   it('should navigate to /movie/:id when card is clicked', () => {
@@ -76,5 +86,23 @@ describe('MovieCard', () => {
     fireEvent.click(card);
 
     expect(mockNavigate).toHaveBeenCalledWith('/movie/1');
+  });
+
+  it('should display heart icon when movie is not in favorites', () => {
+    renderWithRouter(<MovieCard movie={mockMovie} />);
+
+    const button = screen.getByTestId('movie-action-button');
+    expect(button).toHaveAttribute('aria-label', 'Adicionar aos favoritos');
+  });
+
+  it('should display trash icon when movie is in favorites', async () => {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([mockMovie]));
+
+    renderWithRouter(<MovieCard movie={mockMovie} />);
+
+    await waitFor(() => {
+      const button = screen.getByTestId('movie-action-button');
+      expect(button).toHaveAttribute('aria-label', 'Remover dos favoritos');
+    });
   });
 });
