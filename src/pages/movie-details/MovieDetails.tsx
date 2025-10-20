@@ -60,7 +60,7 @@ const MovieDetails = () => {
       <div className="min-h-screen bg-surface-primary p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-content-primary text-xl">Carregando...</div>
+            <div className="text-content-default text-xl">Carregando...</div>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ const MovieDetails = () => {
       <div className="min-h-screen bg-surface-primary p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-            <div className="text-content-primary text-xl">{error}</div>
+            <div className="text-content-default text-xl">{error}</div>
             <Button onClick={handleGoBack} variant="outline" color="primary">
               <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
               Voltar
@@ -88,7 +88,7 @@ const MovieDetails = () => {
       <div className="min-h-screen bg-surface-primary p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-content-primary text-xl">
+            <div className="text-content-default text-xl">
               Filme não encontrado
             </div>
           </div>
