@@ -2,6 +2,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Home from '../pages/home';
 import MovieDetails from '../pages/movie-details';
 import Favorites from '../pages/favorites';
+import Search from '../pages/search';
 import { Header } from '../lib/component';
 import type {
   HeaderSearchEvent,
@@ -20,8 +21,9 @@ const AppRouter = () => {
   };
 
   const handleSearch = (event: HeaderSearchEvent) => {
-    console.log('Search query:', event.query);
-    // TODO: Implement search functionality
+    if (event.query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(event.query.trim())}`);
+    }
   };
 
   const handleNavigate = (event: HeaderNavigationEvent) => {
@@ -41,6 +43,7 @@ const AppRouter = () => {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
