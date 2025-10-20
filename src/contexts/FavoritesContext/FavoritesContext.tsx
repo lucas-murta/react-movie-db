@@ -48,14 +48,6 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
     return favorites.some((movie) => movie.id === movieId);
   };
 
-  const toggleFavorite = (movie: Movie) => {
-    if (isFavorite(movie.id)) {
-      removeFromFavorites(movie.id);
-    } else {
-      addToFavorites(movie);
-    }
-  };
-
   const clearFavorites = () => {
     setFavorites([]);
   };
@@ -67,7 +59,6 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
     addToFavorites,
     removeFromFavorites,
     isFavorite,
-    toggleFavorite,
     clearFavorites,
     favoritesCount,
   };

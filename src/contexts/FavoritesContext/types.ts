@@ -6,7 +6,6 @@ export interface FavoritesContextType {
   addToFavorites: (movie: Movie) => void;
   removeFromFavorites: (movieId: number) => void;
   isFavorite: (movieId: number) => boolean;
-  toggleFavorite: (movie: Movie) => void;
   clearFavorites: () => void;
   favoritesCount: number;
 }
