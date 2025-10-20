@@ -65,8 +65,8 @@ const Pagination: React.FC<PaginationProps> = ({
           color="primary"
           onClick={() => handlePageChange(1)}
           disabled={isFirstPage}
+          iconButton={true}
           data-testid="first-page-button"
-          className="h-10 w-10 p-0 flex items-center justify-center"
         >
           <FontAwesomeIcon icon={faAnglesLeft} className="text-sm" />
         </Button>
@@ -77,6 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({
           color="secondary"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={isFirstPage}
+          iconButton={true}
           data-testid="prev-page-button"
         >
           <FontAwesomeIcon icon={faChevronLeft} className="text-sm" />
@@ -85,7 +86,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {visiblePages.map((page) => (
         <Button
           key={page}
-          variant={page === currentPage ? 'solid' : 'outline'}
+          variant={page === currentPage ? 'solid' : 'text'}
           color="secondary"
           onClick={() => handlePageChange(page)}
           data-testid={`page-button-${page}`}
@@ -99,6 +100,7 @@ const Pagination: React.FC<PaginationProps> = ({
           color="secondary"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={isLastPage}
+          iconButton={true}
           data-testid="next-page-button"
         >
           <FontAwesomeIcon icon={faChevronRight} className="text-sm" />
@@ -110,6 +112,7 @@ const Pagination: React.FC<PaginationProps> = ({
           color="primary"
           onClick={() => handlePageChange(totalPages)}
           disabled={isLastPage}
+          iconButton={true}
           data-testid="last-page-button"
         >
           <FontAwesomeIcon icon={faAnglesRight} className="text-sm" />

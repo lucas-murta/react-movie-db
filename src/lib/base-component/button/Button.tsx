@@ -7,12 +7,13 @@ const Button = ({
   children,
   disabled = false,
   type = 'button',
+  iconButton = false,
   ...rest
 }: ButtonProps) => {
   const getVariantClasses = () => {
     const baseClasses = [
       'h-10',
-      'px-4',
+      iconButton ? 'w-10' : 'px-4',
       'rounded-lg',
       'transition-colors',
       'duration-200',
