@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Home from '../pages/home';
 import MovieDetails from '../pages/movie-details';
 import Favorites from '../pages/favorites';
-import { Header } from '../lib/base-component';
+import { Header } from '../lib/component';
 import type {
   HeaderSearchEvent,
   HeaderNavigationEvent,
