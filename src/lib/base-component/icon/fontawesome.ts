@@ -9,6 +9,8 @@ import {
   faUser,
   faCog,
   faClapperboard,
+  faCheckCircle,
+  faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adiciona os ícones à biblioteca
@@ -21,5 +23,7 @@ library.add(
   faHome,
   faUser,
   faCog,
-  faClapperboard
+  faClapperboard,
+  faCheckCircle,
+  faTimesCircle
 );
