@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import Search from './Search';
 import { moviesService, type Movie } from '../../services';
+import { ToastProvider } from '../../contexts/ToastContext';
 
 vi.mock('../../services', () => ({
   moviesService: {
@@ -51,7 +52,9 @@ const mockSearchResponse = {
 const renderSearch = () => {
   return render(
     <BrowserRouter>
-      <Search />
+      <ToastProvider>
+        <Search />
+      </ToastProvider>
     </BrowserRouter>
   );
 };

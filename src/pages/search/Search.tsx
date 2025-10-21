@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { MovieCard, Pagination } from '../../lib/component';
 import type { Movie } from '../../services/types';
 import { moviesService } from '../../services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useToast } from '../../hooks/useToast';
 
 const Search = () => {
   const [searchParams] = useSearchParams();
@@ -13,6 +14,9 @@ const Search = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const { showError } = useToast();
+  const showErrorRef = useRef(showError);
+  showErrorRef.current = showError;
 
   const loadSearchResults = async (query: string, page: number) => {
     if (!query.trim()) {
@@ -30,9 +34,9 @@ const Search = () => {
       });
       setMovies(response.results);
       setTotalPages(response.total_pages);
-    } catch (err) {
+    } catch {
       setError('Erro ao buscar filmes. Tente novamente mais tarde.');
-      console.error('Erro ao buscar filmes:', err);
+      showErrorRef.current('Erro', 'Não foi possível buscar os filmes');
     } finally {
       setLoading(false);
     }

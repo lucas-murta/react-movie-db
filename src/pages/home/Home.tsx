@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MovieCard, Pagination } from '../../lib/component';
 import type { Movie } from '../../services/types';
 import { moviesService } from '../../services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useToast } from '../../hooks/useToast';
 
 const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -10,6 +11,9 @@ const Home = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const { showError } = useToast();
+  const showErrorRef = useRef(showError);
+  showErrorRef.current = showError;
 
   const loadMovies = async (page: number) => {
     try {
@@ -18,9 +22,9 @@ const Home = () => {
       const response = await moviesService.getDiscoveryMovies(page);
       setMovies(response.results);
       setTotalPages(response.total_pages);
-    } catch (err) {
+    } catch {
       setError('Erro ao carregar filmes. Tente novamente mais tarde.');
-      console.error('Erro ao carregar filmes:', err);
+      showErrorRef.current('Erro', 'Não foi possível carregar os filmes');
     } finally {
       setLoading(false);
     }

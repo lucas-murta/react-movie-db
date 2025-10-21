@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import MovieCard from './MovieCard';
 import type { Movie } from '../../../services/types';
 import { FavoritesProvider } from '../../../contexts/FavoritesContext';
+import { ToastProvider } from '../../../contexts/ToastContext';
 
 const mockMovie: Movie = {
   id: 1,
@@ -29,9 +30,11 @@ vi.mock('react-router-dom', async () => {
 
 const renderWithRouter = (component: React.ReactElement) => {
   return render(
-    <FavoritesProvider>
-      <BrowserRouter>{component}</BrowserRouter>
-    </FavoritesProvider>
+    <ToastProvider>
+      <FavoritesProvider>
+        <BrowserRouter>{component}</BrowserRouter>
+      </FavoritesProvider>
+    </ToastProvider>
   );
 };
 

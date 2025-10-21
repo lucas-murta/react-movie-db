@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import Favorites from './Favorites';
 import { FavoritesProvider } from '../../contexts/FavoritesContext';
+import { ToastProvider } from '../../contexts/ToastContext';
 import type { Movie } from '../../services/types';
 
 const mockNavigate = vi.fn();
@@ -30,7 +31,9 @@ const mockMovie: Movie = {
 const renderWithRouter = (component: React.ReactElement) => {
   return render(
     <BrowserRouter>
-      <FavoritesProvider>{component}</FavoritesProvider>
+      <ToastProvider>
+        <FavoritesProvider>{component}</FavoritesProvider>
+      </ToastProvider>
     </BrowserRouter>
   );
 };

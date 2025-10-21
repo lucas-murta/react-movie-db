@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 import { moviesService } from '../../services';
 import { FavoritesProvider } from '../../contexts/FavoritesContext';
+import { ToastProvider } from '../../contexts/ToastContext';
 
 // Mock do moviesService
 vi.mock('../../services', () => ({
@@ -35,11 +36,13 @@ const mockMoviesResponse = {
 
 const renderHome = () => {
   return render(
-    <FavoritesProvider>
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    </FavoritesProvider>
+    <ToastProvider>
+      <FavoritesProvider>
+        <BrowserRouter>
+          <Home />
+        </BrowserRouter>
+      </FavoritesProvider>
+    </ToastProvider>
   );
 };
 
