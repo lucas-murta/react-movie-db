@@ -13,18 +13,27 @@ export const moviesService = {
       sort_by: 'popularity.desc',
       vote_count_gte: 1000,
       vote_average_gte: 6.0,
+      language: 'pt-BR',
     });
   },
 
   searchMovies: async (params: SearchMoviesParams): Promise<MoviesResponse> => {
-    return apiRequest<MoviesResponse>('/search/movie', { page: 1, ...params });
+    return apiRequest<MoviesResponse>('/search/movie', {
+      page: 1,
+      language: 'pt-BR',
+      ...params,
+    });
   },
 
   getMovieDetails: async (movieId: number): Promise<Movie> => {
-    return apiRequest<Movie>(`/movie/${movieId}`);
+    return apiRequest<Movie>(`/movie/${movieId}`, {
+      language: 'pt-BR',
+    });
   },
 
   getGenres: async (): Promise<GenresResponse> => {
-    return apiRequest<GenresResponse>('/genre/movie/list');
+    return apiRequest<GenresResponse>('/genre/movie/list', {
+      language: 'pt-BR',
+    });
   },
 };
