@@ -64,6 +64,7 @@ describe('Movies Service', () => {
         sort_by: 'popularity.desc',
         vote_count_gte: 1000,
         vote_average_gte: 6.0,
+        language: 'pt-BR',
       });
       expect(result).toEqual(mockMoviesResponse);
     });
@@ -78,6 +79,7 @@ describe('Movies Service', () => {
 
       expect(mockApiRequest).toHaveBeenCalledWith('/search/movie', {
         page: 1,
+        language: 'pt-BR',
         query: 'test movie',
       });
     });
@@ -89,7 +91,9 @@ describe('Movies Service', () => {
 
       const result = await moviesService.getMovieDetails(1);
 
-      expect(mockApiRequest).toHaveBeenCalledWith('/movie/1');
+      expect(mockApiRequest).toHaveBeenCalledWith('/movie/1', {
+        language: 'pt-BR',
+      });
       expect(result).toEqual(mockMovieDetails);
     });
   });
@@ -100,7 +104,9 @@ describe('Movies Service', () => {
 
       const result = await moviesService.getGenres();
 
-      expect(mockApiRequest).toHaveBeenCalledWith('/genre/movie/list');
+      expect(mockApiRequest).toHaveBeenCalledWith('/genre/movie/list', {
+        language: 'pt-BR',
+      });
       expect(result).toEqual(mockGenresResponse);
     });
   });
