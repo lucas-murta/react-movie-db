@@ -35,9 +35,17 @@ jobs:
 
     - name: Run unit tests
       run: npm run test:run
+      env:
+        VITE_TMDB_BASE_URL: https://api.themoviedb.org/3
+        VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
+        VITE_TMDB_READ_ACCESS_TOKEN: ${{ secrets.VITE_TMDB_READ_ACCESS_TOKEN }}
 
     - name: Build project
       run: npm run build
+      env:
+        VITE_TMDB_BASE_URL: https://api.themoviedb.org/3
+        VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
+        VITE_TMDB_READ_ACCESS_TOKEN: ${{ secrets.VITE_TMDB_READ_ACCESS_TOKEN }}
 
     - name: Upload build artifacts
       if: matrix.node-version == '20.x'
@@ -66,6 +74,10 @@ jobs:
 
     - name: Build project
       run: npm run build
+      env:
+        VITE_TMDB_BASE_URL: https://api.themoviedb.org/3
+        VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
+        VITE_TMDB_READ_ACCESS_TOKEN: ${{ secrets.VITE_TMDB_READ_ACCESS_TOKEN }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
