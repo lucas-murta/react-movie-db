@@ -131,7 +131,7 @@ src/
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend:** React 18, TypeScript, Vite
-- **Styling:** CSS Modules, Design Tokens
+- **Styling:** Tailwind CSS, Design Tokens
 - **State Management:** Context API, Custom Hooks
 - **Testing:** Vitest, Testing Library
 - **API:** The Movie Database (TMDB)
