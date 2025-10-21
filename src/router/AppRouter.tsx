@@ -41,12 +41,14 @@ const AppRouter = () => {
         onSearch={handleSearch}
         onNavigate={handleNavigate}
       />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
+      <main className="pt-16">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </main>
     </>
   );
 };
