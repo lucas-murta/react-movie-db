@@ -1,10 +1,8 @@
-name: CI and Deploy to S3
+name: CI/CD - Deploy to Production
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   ci:
@@ -17,7 +15,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22'
+        node-version: '22.x'
         cache: 'npm'
 
     - name: Install dependencies
@@ -44,7 +42,6 @@ jobs:
         VITE_TMDB_READ_ACCESS_TOKEN: ${{ secrets.VITE_TMDB_READ_ACCESS_TOKEN }}
 
     - name: Upload build artifacts
-      if: matrix.node-version == '20.x'
       uses: actions/upload-artifact@v4
       with:
         name: build-files
@@ -53,12 +50,12 @@ jobs:
   deploy:
     needs: ci
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
+    if: github.ref == 'refs/heads/main'
+    
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
-
+        
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -76,12 +73,13 @@ jobs:
         VITE_TMDB_READ_ACCESS_TOKEN: ${{ secrets.VITE_TMDB_READ_ACCESS_TOKEN }}
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Sync dist to S3
+    - name: Deploy to S3
       run: |
-        aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}/ --delete
+        aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }} --delete
+        echo "🚀 Deploy completed successfully!"
