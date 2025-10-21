@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { moviesService } from '../../services';
 import type { Movie } from '../../services/types';
-import { Button, Chips } from '../../lib/base-component';
+import { Button, Chips, Loading } from '../../lib/base-component';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useToast } from '../../hooks/useToast';
 
@@ -71,7 +71,7 @@ const MovieDetails = () => {
       <div className="min-h-screen bg-surface-primary p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-content-default text-xl">Carregando...</div>
+            <Loading text="Carregando..." />
           </div>
         </div>
       </div>

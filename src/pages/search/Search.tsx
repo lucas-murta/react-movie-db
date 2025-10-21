@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { MovieCard, Pagination } from '../../lib/component';
+import { Loading } from '../../lib/base-component';
 import type { Movie } from '../../services/types';
 import { moviesService } from '../../services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,9 +64,8 @@ const Search = () => {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-secondary mx-auto"></div>
-          <p className="text-lg text-content-ghost mt-4">Buscando filmes...</p>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <Loading text="Buscando filmes..." />
         </div>
       </div>
     );
