@@ -48,8 +48,9 @@ export function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-row sm:items-center sm:h-16 py-3 sm:py-0 gap-3 sm:gap-0">
           <div
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-3 cursor-pointer"
             data-testid="header-logo"
+            onClick={() => handleNavigate('home')}
           >
             <FontAwesomeIcon
               icon={faClapperboard}
