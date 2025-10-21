@@ -1,6 +1,7 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useRef } from 'react';
 import type { Movie } from '../../services/types';
 import type { FavoritesContextType, FavoritesProviderProps } from './types';
+import { useToast } from '../../hooks/useToast';
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
   undefined
@@ -10,6 +11,9 @@ const FAVORITES_STORAGE_KEY = 'react-movie-db-favorites';
 
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
+  const { showError } = useToast();
+  const showErrorRef = useRef(showError);
+  showErrorRef.current = showError;
 
   useEffect(() => {
     try {
@@ -18,16 +22,16 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
         const parsedFavorites = JSON.parse(storedFavorites);
         setFavorites(parsedFavorites);
       }
-    } catch (error) {
-      console.error('Erro ao carregar favoritos do localStorage:', error);
+    } catch {
+      showErrorRef.current('Erro', 'Não foi possível carregar os favoritos');
     }
   }, []);
 
   useEffect(() => {
     try {
       localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
-    } catch (error) {
-      console.error('Erro ao salvar favoritos no localStorage:', error);
+    } catch {
+      showErrorRef.current('Erro', 'Não foi possível salvar os favoritos');
     }
   }, [favorites]);
 

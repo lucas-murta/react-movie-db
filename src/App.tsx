@@ -9,16 +9,16 @@ function App() {
   useTheme();
 
   return (
-    <FavoritesProvider>
-      <ToastProvider>
+    <ToastProvider>
+      <FavoritesProvider>
         <div className="min-h-screen bg-surface-2 text-content-default">
           <Router>
             <AppRouter />
           </Router>
           <ToastContainer />
         </div>
-      </ToastProvider>
-    </FavoritesProvider>
+      </FavoritesProvider>
+    </ToastProvider>
   );
 }
 

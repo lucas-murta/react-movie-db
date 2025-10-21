@@ -1,10 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { renderHook } from '@testing-library/react';
 import { useToast } from './useToast';
+import { ToastProvider } from '../contexts/ToastContext';
 
 const mockAddToast = vi.fn();
 const mockRemoveToast = vi.fn();
 
 vi.mock('../contexts/ToastContext', () => ({
+  ToastProvider: ({ children }: { children: React.ReactNode }) => children,
   useToastContext: () => ({
     addToast: mockAddToast,
     removeToast: mockRemoveToast,
@@ -18,36 +21,42 @@ describe('useToast', () => {
   });
 
   it('should provide toast functions', () => {
-    const toast = useToast();
+    const { result } = renderHook(() => useToast(), {
+      wrapper: ToastProvider,
+    });
 
-    expect(toast.showToast).toBeDefined();
-    expect(toast.showSuccess).toBeDefined();
-    expect(toast.showError).toBeDefined();
-    expect(toast.removeToast).toBeDefined();
-    expect(typeof toast.showToast).toBe('function');
-    expect(typeof toast.showSuccess).toBe('function');
-    expect(typeof toast.showError).toBe('function');
-    expect(typeof toast.removeToast).toBe('function');
+    expect(result.current.showToast).toBeDefined();
+    expect(result.current.showSuccess).toBeDefined();
+    expect(result.current.showError).toBeDefined();
+    expect(result.current.removeToast).toBeDefined();
+    expect(typeof result.current.showToast).toBe('function');
+    expect(typeof result.current.showSuccess).toBe('function');
+    expect(typeof result.current.showError).toBe('function');
+    expect(typeof result.current.removeToast).toBe('function');
   });
 
   it('should call addToast when showToast is called', () => {
-    const toast = useToast();
+    const { result } = renderHook(() => useToast(), {
+      wrapper: ToastProvider,
+    });
     const toastData = {
       status: 'positive' as const,
       title: 'Test Title',
       message: 'Test Message',
     };
 
-    toast.showToast(toastData);
+    result.current.showToast(toastData);
 
     expect(mockAddToast).toHaveBeenCalledWith(toastData);
     expect(mockAddToast).toHaveBeenCalledTimes(1);
   });
 
   it('should call addToast with positive status when showSuccess is called', () => {
-    const toast = useToast();
+    const { result } = renderHook(() => useToast(), {
+      wrapper: ToastProvider,
+    });
 
-    toast.showSuccess('Success Title', 'Success Message');
+    result.current.showSuccess('Success Title', 'Success Message');
 
     expect(mockAddToast).toHaveBeenCalledWith({
       status: 'positive',
@@ -58,9 +67,11 @@ describe('useToast', () => {
   });
 
   it('should call addToast with negative status when showError is called', () => {
-    const toast = useToast();
+    const { result } = renderHook(() => useToast(), {
+      wrapper: ToastProvider,
+    });
 
-    toast.showError('Error Title', 'Error Message');
+    result.current.showError('Error Title', 'Error Message');
 
     expect(mockAddToast).toHaveBeenCalledWith({
       status: 'negative',
@@ -71,10 +82,12 @@ describe('useToast', () => {
   });
 
   it('should call removeToast when removeToast is called', () => {
-    const toast = useToast();
+    const { result } = renderHook(() => useToast(), {
+      wrapper: ToastProvider,
+    });
     const toastId = 'test-id';
 
-    toast.removeToast(toastId);
+    result.current.removeToast(toastId);
 
     expect(mockRemoveToast).toHaveBeenCalledWith(toastId);
     expect(mockRemoveToast).toHaveBeenCalledTimes(1);

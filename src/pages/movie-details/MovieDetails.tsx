@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import { moviesService } from '../../services';
 import type { Movie } from '../../services/types';
 import { Button, Chips } from '../../lib/base-component';
 import { useFavorites } from '../../contexts/FavoritesContext';
+import { useToast } from '../../hooks/useToast';
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,9 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { showError } = useToast();
+  const showErrorRef = useRef(showError);
+  showErrorRef.current = showError;
 
   const isMovieFavorite = isFavorite(Number(id));
 
@@ -30,9 +34,12 @@ const MovieDetails = () => {
         setError(null);
         const movieData = await moviesService.getMovieDetails(Number(id));
         setMovie(movieData);
-      } catch (err) {
+      } catch {
         setError('Erro ao carregar detalhes do filme');
-        console.error('Error loading movie details:', err);
+        showErrorRef.current(
+          'Erro',
+          'Não foi possível carregar os detalhes do filme'
+        );
       } finally {
         setLoading(false);
       }
