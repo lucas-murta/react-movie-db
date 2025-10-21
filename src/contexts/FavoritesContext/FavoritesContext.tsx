@@ -11,9 +11,11 @@ const FAVORITES_STORAGE_KEY = 'react-movie-db-favorites';
 
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
-  const { showError } = useToast();
+  const { showError, showSuccess } = useToast();
   const showErrorRef = useRef(showError);
+  const showSuccessRef = useRef(showSuccess);
   showErrorRef.current = showError;
+  showSuccessRef.current = showSuccess;
 
   useEffect(() => {
     try {
@@ -42,6 +44,7 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
       }
       return [...prev, movie];
     });
+    showSuccessRef.current('Sucesso', 'Filme adicionado aos favoritos');
   };
 
   const removeFromFavorites = (movieId: number) => {
