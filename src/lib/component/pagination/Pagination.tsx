@@ -7,6 +7,7 @@ import {
   faAnglesRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../../base-component';
+import { useBreakpoints } from '../../../hooks/useBreakpoints';
 import type { PaginationProps } from './Pagination.types';
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -16,20 +17,34 @@ const Pagination: React.FC<PaginationProps> = ({
   className = '',
   showFirstLast = true,
   showPrevNext = true,
-  maxVisiblePages = 5,
+  maxVisiblePages = 3,
 }) => {
+  const { isSm, isMd, isLg } = useBreakpoints();
+
+  const getResponsiveMaxVisiblePages = () => {
+    if (isSm && !isMd) return 3;
+    if (isMd && !isLg) return 4;
+    if (isLg) return 5;
+    return maxVisiblePages;
+  };
+
+  const responsiveMaxVisiblePages = getResponsiveMaxVisiblePages();
+
   const getVisiblePages = () => {
     const pages: number[] = [];
-    const halfVisible = Math.floor(maxVisiblePages / 2);
+    const halfVisible = Math.floor(responsiveMaxVisiblePages / 2);
 
     let startPage = Math.max(1, currentPage - halfVisible);
     let endPage = Math.min(totalPages, currentPage + halfVisible);
 
-    if (endPage - startPage + 1 < maxVisiblePages) {
+    if (endPage - startPage + 1 < responsiveMaxVisiblePages) {
       if (startPage === 1) {
-        endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        endPage = Math.min(
+          totalPages,
+          startPage + responsiveMaxVisiblePages - 1
+        );
       } else {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        startPage = Math.max(1, endPage - responsiveMaxVisiblePages + 1);
       }
     }
 
