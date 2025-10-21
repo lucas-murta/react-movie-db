@@ -3,10 +3,10 @@
 /* Design Tokens - Light Theme (Default) */
 :root {
   --color-primary: rgb(59, 130, 246);
-  --color-secondary: rgb(142, 122, 183);
+  --color-secondary: rgb(106, 74, 173);
   --color-surface-0: rgb(255, 255, 255);
-  --color-surface-1: rgb(222, 228, 236);
-  --color-surface-2: rgb(181, 191, 207);
+  --color-surface-1: rgb(236, 244, 255);
+  --color-surface-2: rgb(221, 229, 241);
   --color-surface-positive: rgb(0, 122, 66);
   --color-surface-warning: rgb(245, 158, 11);
   --color-surface-negative: rgb(168, 11, 11);
