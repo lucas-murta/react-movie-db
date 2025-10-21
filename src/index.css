@@ -16,6 +16,8 @@
   --color-content-primary: rgb(255, 255, 255);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
+  --color-content-positive: rgb(184, 252, 220);
+  --color-content-negative: rgb(255, 184, 184);
   --color-focus: rgb(194, 38, 251);
   --color-border-0: rgb(148, 173, 211);
   --color-border-1: rgb(180, 206, 247);
@@ -28,15 +30,17 @@
   --color-surface-0: rgb(96, 112, 135);
   --color-surface-1: rgb(51, 65, 85);
   --color-surface-2: rgb(30, 41, 59);
-  --color-surface-positive: rgb(91, 221, 160);
+  --color-surface-positive: rgb(184, 252, 220);
   --color-surface-warning: rgb(240, 197, 124);
-  --color-surface-negative: rgb(219, 134, 134);
+  --color-surface-negative: rgb(255, 184, 184);
   --color-content-default: rgb(255, 255, 255);
   --color-content-disable: rgb(226, 226, 226);
   --color-content-ghost: rgb(184, 184, 184);
   --color-content-primary: rgb(40, 40, 40);
   --color-content-bright: rgb(255, 255, 255);
   --color-content-din: rgb(0, 0, 0);
+  --color-content-positive: rgb(0, 122, 66);
+  --color-content-negative: rgb(168, 11, 11);
   --color-focus: rgb(194, 38, 251);
   --color-border-0: rgb(99, 114, 137);
   --color-border-1: rgb(152, 161, 175);
@@ -59,6 +63,8 @@
   --color-content-primary: var(--color-content-primary);
   --color-content-bright: var(--color-content-bright);
   --color-content-din: var(--color-content-din);
+  --color-content-positive: var(--color-content-positive);
+  --color-content-negative: var(--color-content-negative);
 
   /* Surface Status Colors */
   --color-surface-positive: var(--color-surface-positive);
